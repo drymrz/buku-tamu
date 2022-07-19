@@ -1,0 +1,68 @@
+nz-card {
+  margin: auto;
+}
+
+.flex-layout {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.image-section,
+.description-section {
+  width: 50%;
+}
+
+.image-area {
+  max-width: 100%;
+
+  .selfie-img {
+    width: 100%;
+  }
+
+  .signature-img {
+    width: 100%;
+  }
+}
+
+.signature-img {
+  width: 550px;
+}
+
+.signature-card {
+  margin-top: 25px;
+}
+
+.backBtn {
+  margin-left: 60px;
+}
+
+@media screen and (max-width: 1366px) {
+  .backBtn {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .flex-layout {
+    flex-direction: column;
+  }
+
+  .image-section,
+  .description-section {
+    width: 100%;
+  }
+
+  .description-section {
+    margin-top: 25px;
+  }
+
+  .signature-card {
+    margin-bottom: 35px;
+  }
+
+  .backBtn {
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+}

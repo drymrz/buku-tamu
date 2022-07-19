@@ -1,0 +1,122 @@
+<form nz-form [formGroup]="entryForm" nzLayout="vertical">
+  <nz-form-item class="input-number input-hidden">
+    <nz-form-label>No</nz-form-label>
+    <nz-form-control>
+      <input
+        style="color: #000"
+        nz-input
+        [(ngModel)]="dataCount"
+        [ngModelOptions]="{ standalone: true }"
+        nzSize="large"
+        class="ant-input-disabled"
+        readOnly
+        type="number"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="flex">
+    <nz-form-item class="input-number">
+      <nz-form-label>Date </nz-form-label>
+      <nz-form-control>
+        <nz-date-picker
+          [nzFormat]="dateFormat"
+          [(ngModel)]="todayDate"
+          [ngModelOptions]="{ standalone: true }"
+          nzSize="large"
+          disabled
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="input-number">
+      <nz-form-label>Day </nz-form-label>
+      <nz-form-control>
+        <nz-date-picker
+          [nzFormat]="dayFormat"
+          [(ngModel)]="todayDate"
+          [ngModelOptions]="{ standalone: true }"
+          nzSize="large"
+          disabled
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <nz-divider></nz-divider>
+
+  <div class="flex">
+    <nz-form-item>
+      <nz-form-label>Nama Lengkap</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="fullName" nzSize="large" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Nomor HP</nz-form-label>
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+          <ng-template #addOnBeforeTemplate>
+            <nz-select
+              formControlName="phoneNumberPrefix"
+              class="large-select"
+              nzSize="large"
+            >
+              <nz-option nzLabel="+62" nzValue="+62"></nz-option>
+            </nz-select>
+          </ng-template>
+          <input
+            nz-input
+            formControlName="phoneNumber"
+            style="height: 40px"
+            pattern="[0-9.]+"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label>Asal Instansi / Wali Murid dari</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="instansi" nzSize="large" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-divider></nz-divider>
+
+  <div class="last-flex">
+    <div class="item-group">
+      <nz-form-item>
+        <nz-form-label>Akan Bertemu Dengan</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="namaGuru" nzSize="large" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Keperluan</nz-form-label>
+        <nz-form-control>
+          <textarea
+            nz-input
+            formControlName="keperluan"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <nz-button-group nzSize="large">
+      <button nz-button nzType="text" nzDanger (click)="resetBtn()">
+        RESET
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        [disabled]="!entryForm.valid"
+        (click)="nextBtn()"
+      >
+        NEXT
+      </button>
+    </nz-button-group>
+  </div>
+</form>

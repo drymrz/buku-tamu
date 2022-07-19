@@ -1,0 +1,161 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+// @primary-color: #1890ff;
+// @primary-color: #1890ff;
+@primary-color: #ffa426;
+
+::selection {
+  color: @text-color-inverse;
+  background: #1890ff;
+}
+
+.ant-layout {
+  background: #f3f6ff;
+}
+
+.ant-layout-sider {
+  background: white;
+}
+
+.ant-menu {
+  color: #868e96;
+}
+
+.ant-menu-item a {
+  color: #868e96;
+}
+
+.ant-menu-item-selected a,
+.ant-menu-item-selected a:hover {
+  color: #ffa426;
+}
+
+.ant-menu-item:active,
+.ant-menu-submenu-title:active {
+  background: #6777ef36;
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  content: "";
+}
+
+.ant-menu-item .ant-menu-item-icon,
+.ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background: #fff;
+}
+
+.ant-table table {
+  text-align: center;
+}
+.ant-table-thead > tr > th {
+  text-align: center;
+}
+
+.ant-table-content {
+  overflow: auto;
+}
+.ant-table-wrapper {
+  overflow: auto;
+}
+
+.ant-picker-input > input[disabled] {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.ant-spin-nested-loading > div > .ant-spin {
+  max-height: 10000px;
+}
+
+@media screen and (min-width: 1280px) {
+  .ant-steps {
+    height: 635px !important;
+  }
+
+  .ant-steps-item-tail {
+    z-index: -1;
+  }
+
+  .pertama {
+    .ant-steps-item-tail {
+      height: 350px !important;
+    }
+  }
+
+  .kedua {
+    .ant-steps-item-tail {
+      margin-top: 100px !important;
+      height: 325px !important;
+    }
+  }
+
+  .ant-steps-item-wait
+    > .ant-steps-item-container
+    > .ant-steps-item-tail::after {
+    background-color: #e1dfdf;
+  }
+
+  .ant-steps-item-icon {
+    margin-top: 100px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .ant-steps-vertical
+    > .ant-steps-item
+    > .ant-steps-item-container
+    > .ant-steps-item-tail {
+    left: 29.5px;
+  }
+
+  .ant-steps-icon {
+    font-size: 24px;
+    top: 14.5px !important;
+  }
+}
+
+.ant-picker-input > input[disabled] {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.ant-form-item-label > label {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 720px) {
+  nz-card {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  nz-card {
+    width: 85% !important;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  nz-card {
+    width: 95% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login-card {
+    .ant-card-body {
+      padding: 0 !important;
+    }
+  }
+}

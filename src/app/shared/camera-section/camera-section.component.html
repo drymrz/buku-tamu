@@ -1,0 +1,63 @@
+<div class="desktop-view" *ngIf="!isMobileView">
+  <div class="webcam" *ngIf="!webcamImage">
+    <webcam
+      [height]="800"
+      [width]="980"
+      [trigger]="triggerObservable"
+      (imageCapture)="handleImage($event)"
+    ></webcam>
+    <button
+      nz-button
+      class="captureBtn"
+      nzType="default"
+      nzSize="large"
+      nzShape="circle"
+      (click)="triggerSnapshot()"
+      [disabled]="disableBtn"
+    >
+      <i nz-icon nzType="camera" nzTheme="outline"></i>
+    </button>
+  </div>
+  <div class="snapshot" *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl" />
+
+    <nz-button-group nzSize="large">
+      <button nz-button nzType="text" nzDanger (click)="resetImage()">
+        RETAKE SELFIE
+      </button>
+      <button nz-button nzType="primary" (click)="nextBtn()">NEXT</button>
+    </nz-button-group>
+  </div>
+</div>
+
+<div class="mobile-view" *ngIf="isMobileView">
+  <div class="webcam" *ngIf="!webcamImage">
+    <button
+      nz-button
+      class="captureBtn"
+      nzType="default"
+      nzSize="large"
+      (click)="triggerSnapshot()"
+      [disabled]="disableBtn"
+    >
+      <i nz-icon nzType="camera" nzTheme="outline"></i>
+    </button>
+    <webcam
+      [height]="650"
+      [width]="300"
+      [mirrorImage]="never"
+      [trigger]="triggerObservable"
+      (imageCapture)="handleImage($event)"
+    ></webcam>
+  </div>
+  <div class="snapshot" *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl" />
+
+    <nz-button-group nzSize="large">
+      <button nz-button nzType="text" nzDanger (click)="resetImage()">
+        RETAKE SELFIE
+      </button>
+      <button nz-button nzType="primary" (click)="nextBtn()">NEXT</button>
+    </nz-button-group>
+  </div>
+</div>

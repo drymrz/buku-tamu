@@ -1,0 +1,14 @@
+nz-card {
+  margin: 25px auto 0;
+}
+
+form {
+  margin: auto;
+  max-width: 450px;
+}
+
+@media screen and (min-width: 780px) {
+  nz-card {
+    width: 600px !important;
+  }
+}

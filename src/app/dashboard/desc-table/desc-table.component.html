@@ -1,0 +1,51 @@
+<nz-card>
+  <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+    <div class="flex-layout" style="display: flex">
+      <button nz-button nzSize="large" (click)="routerReturn()">
+        <i nz-icon nzType="rollback" nzTheme="outline"></i>
+      </button>
+      <input
+        readOnly
+        nz-input
+        [(ngModel)]="idSharedData"
+        nzSize="large"
+        style="width: 150px; margin-bottom: 30px; margin-left: 10px"
+      />
+    </div>
+    <nz-table
+      #basicTable
+      [nzData]="dataTamu"
+      nzScroll="{ x: 'auto' }"
+      nzSize="middle"
+    >
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Lengkap</th>
+          <th>Instansi</th>
+          <th>Jam Kunjungan</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.id }}</td>
+          <td>{{ data.fullName }}</td>
+          <td>{{ data.instansi }}</td>
+          <td>{{ data.jamKunjung }}</td>
+          <td>
+            <button
+              nz-button
+              nzType="dashed"
+              nzShape="circle"
+              [routerLink]="['/detailTamu', data.tanggalKunjung, data.id]"
+            >
+              <i nz-icon nzType="eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-spin>
+</nz-card>

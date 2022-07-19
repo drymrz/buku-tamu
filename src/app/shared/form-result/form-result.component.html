@@ -1,0 +1,22 @@
+<div class="flex">
+  <nz-result
+    nzStatus="success"
+    nzTitle="Sukses Mengisi Form Tamu SMKN 7 Batam !"
+    nzSubTitle="Selamat Datang di SMK Negeri 7 Batam ! Terima Kasih sudah mengisi Form Tamu."
+  >
+    <div nz-result-extra>
+      <button nz-button (click)="homeRoute()" nzType="primary">
+        Halaman Awal
+      </button>
+      <button nz-button (click)="backRoute()">Isi Kembali</button>
+      <button
+        *ngIf="!isAccess"
+        class="dashboardBtn"
+        nz-button
+        (click)="dashboardRoute()"
+      >
+        Dashboard
+      </button>
+    </div>
+  </nz-result>
+</div>

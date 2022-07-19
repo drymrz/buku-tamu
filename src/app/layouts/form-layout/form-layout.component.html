@@ -1,0 +1,204 @@
+<div class="desktop-view" *ngIf="!isMobileView">
+  <header>
+    <p>BUKU TAMU SMK NEGERI 7 BATAM</p>
+    <p>FOLLOW THE SIMPLE 3 STEPS AND COMPLETE FORM BELOW</p>
+  </header>
+
+  <nz-modal
+    [nzStyle]="{ top: '80px' }"
+    [(nzVisible)]="isVisible"
+    nzMaskClosable="false"
+    nzTitle="Submit Confirmation"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+    nzWidth="1280px"
+  >
+    <ng-container *nzModalContent>
+      <div class="flex">
+        <div class="flex-2">
+          <img
+            class="selfieImg"
+            [src]="'data:image/jpeg;base64,' + imageBase64Data"
+          />
+        </div>
+        <div class="flex-2">
+          <img
+            class="signatureImg"
+            [src]="'data:image/jpeg;base64,' + signatureBase64Data"
+          />
+        </div>
+      </div>
+
+      <nz-descriptions nzBordered>
+        <nz-descriptions-item nzTitle="No" [nzSpan]="3">{{
+          dataForm.inputNo
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tanggal" [nzSpan]="2"
+          >{{ dataForm.hariKunjungan }} ,
+          {{ dataForm.tanggalKunjungan }}</nz-descriptions-item
+        >
+        <nz-descriptions-item nzTitle="Jam">{{
+          dataForm.jamKunjungan
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Nama Lengkap" [nzSpan]="3">{{
+          dataForm.fullName
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Asal Instansi / Wali" [nzSpan]="2">
+          {{ dataForm.instansi }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="No Hp">
+          {{ dataForm.phoneNumberPrefix }}{{ dataForm.phoneNumber }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Bertemu Dengan" [nzSpan]="3">{{
+          dataForm.namaGuru
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Keperluan" [nzSpan]="3">{{
+          dataForm.keperluan
+        }}</nz-descriptions-item>
+      </nz-descriptions>
+    </ng-container>
+  </nz-modal>
+
+  <div class="flex-layout">
+    <div class="steps-description">
+      <div class="steps-1">
+        <h3>FILL THE FORM</h3>
+        <p>MAKE SURE FILL WITH VALID DATA</p>
+      </div>
+
+      <div class="steps-2">
+        <h3>TAKE SELFIE</h3>
+        <p>FACE TO CAMERA AND SMILE</p>
+      </div>
+
+      <div class="steps-3">
+        <h3>PUT SIGNATURE</h3>
+        <p>LEAVE YOUR SIGNATURE HERE</p>
+      </div>
+    </div>
+
+    <nz-steps [nzCurrent]="currentStep" nzDirection="vertical">
+      <nz-step [nzDisabled]="disable" class="pertama"></nz-step>
+      <nz-step class="kedua"></nz-step>
+      <nz-step class="ketiga"></nz-step>
+    </nz-steps>
+
+    <div class="steps-content">
+      <div class="first-step" *ngIf="currentStep === 0">
+        <app-form-section
+          (entryFormDataPass)="entryFormDataPass($event)"
+        ></app-form-section>
+      </div>
+
+      <div class="second-step" *ngIf="currentStep === 1">
+        <app-camera-section
+          (imageBase64)="imageBase64($event)"
+        ></app-camera-section>
+      </div>
+
+      <div class="third-step" *ngIf="currentStep === 2">
+        <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+          <app-signature-section
+            (signatureDataPass)="signatureDataPass($event)"
+          ></app-signature-section>
+        </nz-spin>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-view" *ngIf="isMobileView">
+  <header>
+    <p>BUKU TAMU SMK NEGERI 7 BATAM</p>
+    <p>FOLLOW THE SIMPLE 3 STEPS AND COMPLETE FORM BELOW</p>
+
+    <div class="steps-area">
+      <nz-steps [nzCurrent]="currentStep" nzDirection="horizontal">
+        <nz-step [nzDisabled]="disable" class="pertama" nzIcon="form"></nz-step>
+        <nz-step class="kedua" nzIcon="camera"></nz-step>
+        <nz-step class="ketiga" nzIcon="highlight"></nz-step>
+      </nz-steps>
+    </div>
+  </header>
+
+  <nz-modal
+    [nzStyle]="{ top: '10px' }"
+    [(nzVisible)]="isVisible"
+    nzMaskClosable="false"
+    nzTitle="Submit Confirmation"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+    nzWidth="90%"
+  >
+    <ng-container *nzModalContent>
+      <!-- <div class="flex">
+        <div class="flex-2">
+          <img
+            class="selfieImg"
+            [src]="'data:image/jpeg;base64,' + imageBase64Data"
+          />
+        </div>
+        <div class="flex-2">
+          <img
+            class="signatureImg"
+            [src]="'data:image/jpeg;base64,' + signatureBase64Data"
+          />
+        </div>
+      </div> -->
+
+      <nz-descriptions nzBordered>
+        <nz-descriptions-item nzTitle="No" [nzSpan]="3">{{
+          dataForm.inputNo
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tanggal" [nzSpan]="2"
+          >{{ dataForm.hariKunjungan }} ,
+          {{ dataForm.tanggalKunjungan }}</nz-descriptions-item
+        >
+        <nz-descriptions-item nzTitle="Jam">{{
+          dataForm.jamKunjungan
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Nama Lengkap" [nzSpan]="3">{{
+          dataForm.fullName
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Asal Instansi / Wali" [nzSpan]="2">
+          {{ dataForm.instansi }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="No Hp">
+          {{ dataForm.phoneNumberPrefix }}{{ dataForm.phoneNumber }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Bertemu Dengan" [nzSpan]="3">{{
+          dataForm.namaGuru
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Keperluan" [nzSpan]="3">{{
+          dataForm.keperluan
+        }}</nz-descriptions-item>
+      </nz-descriptions>
+    </ng-container>
+  </nz-modal>
+
+  <div class="flex-layout">
+    <div class="steps-content">
+      <div class="first-step" *ngIf="currentStep === 0">
+        <app-form-section
+          (entryFormDataPass)="entryFormDataPass($event)"
+        ></app-form-section>
+      </div>
+
+      <div class="second-step" *ngIf="currentStep === 1">
+        <app-camera-section
+          (imageBase64)="imageBase64($event)"
+        ></app-camera-section>
+      </div>
+
+      <div class="third-step" *ngIf="currentStep === 2">
+        <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+          <app-signature-section
+            (signatureDataPass)="signatureDataPass($event)"
+          ></app-signature-section>
+        </nz-spin>
+      </div>
+    </div>
+  </div>
+</div>

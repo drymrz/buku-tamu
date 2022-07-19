@@ -1,0 +1,185 @@
+@media screen and (min-width: 1280px) {
+  header {
+    padding-top: 100px;
+    margin-left: 85px;
+    p {
+      margin: 0;
+
+      &:nth-of-type(1) {
+        font-family: "PoppinsBlack";
+        font-size: 24px;
+        letter-spacing: 0.01em;
+        color: #4b4b4b;
+      }
+
+      &:nth-of-type(2) {
+        font-size: 18px;
+        font-weight: 400;
+        color: #4b4b4b;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  nz-steps {
+    margin-top: 40px;
+    margin-left: 65px;
+  }
+
+  .steps-description {
+    margin-top: 100px;
+    margin-left: 30px;
+    text-align: right;
+
+    h3 {
+      color: #4b4b4b;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .steps-1 {
+      margin-top: 45px;
+    }
+
+    .steps-2 {
+      margin-top: 150px;
+    }
+
+    .steps-3 {
+      margin-top: 155px;
+    }
+  }
+
+  .flex {
+    width: 85%;
+    display: flex;
+    margin: 0px auto 25px;
+
+    .selfieImg {
+      width: 470px;
+    }
+    .signatureImg {
+      width: 500px;
+    }
+  }
+
+  .flex-2 {
+    flex: 2;
+    margin: auto;
+  }
+
+  .flex-layout {
+    width: 90%;
+    margin: 40px auto 0px 120px;
+    display: flex;
+
+    .steps-content {
+      flex: 7;
+
+      .first-step {
+        margin: 35px 0px 0px 80px;
+      }
+
+      .second-step {
+        margin-top: 15px;
+        margin-left: 65px;
+      }
+    }
+  }
+}
+@media screen and(max-height : 980px) {
+  header {
+    padding-top: 50px;
+  }
+
+  nz-steps {
+    margin-top: 30px;
+  }
+
+  .steps-description {
+    margin-top: 90px;
+  }
+
+  .first-step {
+    margin-top: 30px !important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .mobile-view {
+    width: 100%;
+  }
+
+  header {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    padding-top: 25px;
+    margin-left: 0;
+    background-color: #fff;
+    p {
+      margin: 0;
+      padding-left: 10px;
+
+      &:nth-of-type(1) {
+        font-family: "PoppinsBlack";
+        font-size: 18px;
+        letter-spacing: 0.01em;
+        color: #4b4b4b;
+      }
+
+      &:nth-of-type(2) {
+        font-size: 14px;
+        font-weight: 400;
+        color: #4b4b4b;
+      }
+    }
+  }
+
+  .steps-area {
+    width: 95%;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    margin: auto;
+  }
+
+  .steps-content {
+    width: 90%;
+    margin: auto;
+  }
+
+  .flex-layout {
+    padding-top: 155px;
+  }
+
+  .selfieImg {
+    width: 90% !important;
+  }
+
+  .signatureImg {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  header {
+    p {
+      &:nth-of-type(1) {
+        font-size: 16px;
+      }
+
+      &:nth-of-type(2) {
+        font-size: 13px;
+        font-weight: 400;
+        color: #4b4b4b;
+      }
+    }
+  }
+}

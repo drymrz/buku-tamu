@@ -1,0 +1,47 @@
+<nz-card nzTitle="Table User" [nzExtra]="extraTemplate">
+  <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+    <nz-table
+      #basicTable
+      [nzData]="dataUser"
+      nzScroll="{ x: 'auto' }"
+      nzSize="middle"
+    >
+      <thead>
+        <tr>
+          <th width="5%">No</th>
+          <th>Email</th>
+          <th>Nama Lengkap</th>
+          <th>Jabatan</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td class="no"></td>
+          <td>{{ data.id }}</td>
+          <td>{{ data.fullName }}</td>
+          <td>{{ data.jabatan }}</td>
+          <td style="text-transform: capitalize">{{ data.role }}</td>
+          <td>
+            <button
+              nz-button
+              nzType="dashed"
+              nzShape="circle"
+              [routerLink]="['/detailUser', data.id]"
+            >
+              <i nz-icon nzType="eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-spin>
+</nz-card>
+
+<ng-template #extraTemplate>
+  <button nz-button [routerLink]="['../new']">
+    <i nz-icon nzType="plus"></i>
+  </button>
+</ng-template>

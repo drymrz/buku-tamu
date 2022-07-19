@@ -1,0 +1,188 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    *ngIf="!isMobileView"
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <img
+        *ngIf="!isCollapsed"
+        src="../../../assets/img/logo-smk.png"
+        alt="logo-skaju"
+      />
+      <img
+        *ngIf="isCollapsed"
+        style="width: 60px"
+        src="../../../assets/img/logo-smk.png"
+        alt="logo-skaju"
+      />
+    </div>
+    <ul
+      nz-menu
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+      style="margin-top: 2rem"
+    >
+      <p class="menu-header" [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }">
+        DASHBOARD
+      </p>
+      <li nz-menu-item nzSelected nzMatchRouter>
+        <i nz-icon nzType="fire"></i>
+        <a
+          [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }"
+          routerLink="./../dashboard/"
+          >Dashboard</a
+        >
+      </li>
+
+      <div *ngIf="userRole !== 'user'" class="user-forbidden">
+        <!-- <p
+          class="menu-header"
+          *ngIf="userRole !== 'user'"
+          [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }"
+        >
+          DATA TABLES
+        </p>
+        <li nz-submenu nzOpen nzTitle="Procurement" nzIcon="shopping-cart">
+          <ul>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../dashboard/list-absensi">Permintaan ABP</a>
+            </li>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../dashboard/list-user">Rincian Anggaran</a>
+            </li>
+          </ul>
+        </li> -->
+        <p class="menu-header" [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }">
+          USERS
+        </p>
+        <li nz-submenu nzOpen nzTitle="User Data" nzIcon="user">
+          <ul>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../users/table">Table User</a>
+            </li>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../form">Form Tamu</a>
+            </li>
+            <!-- <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../forms/create-user">Lupa Password</a>
+            </li> -->
+          </ul>
+        </li>
+      </div>
+    </ul>
+  </nz-sider>
+  <nz-drawer
+    *ngIf="isMobileView"
+    [nzClosable]="false"
+    [nzVisible]="isCollapsed"
+    nzPlacement="left"
+    (nzOnClose)="isCollapsed = !isCollapsed"
+    [nzBodyStyle]="{ padding: '0' }"
+  >
+    <ng-container *nzDrawerContent>
+      <div class="sidebar-logo">
+        <img src="../../../assets/img/logo-smk.png" alt="logo-skaju" />
+      </div>
+      <ul nz-menu nzMode="inline" style="margin-top: 2rem">
+        <p class="menu-header">DASHBOARD</p>
+        <li nz-menu-item nzSelected nzMatchRouter>
+          <i nz-icon nzType="fire"></i>
+          <a routerLink="./../dashboard/">Dashboard</a>
+        </li>
+        <div *ngIf="userRole !== 'user'" class="user-forbidden">
+          <!-- <p class="menu-header">DATA TABLES</p>
+        <li nz-submenu nzOpen nzTitle="Procurement" nzIcon="shopping-cart">
+          <ul>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../dashboard/list-absensi">Permintaan ABP</a>
+            </li>
+            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+              <a routerLink="./../dashboard/list-user">Rincian Anggaran</a>
+            </li>
+          </ul>
+        </li> -->
+          <p class="menu-header">USERS</p>
+          <li nz-submenu nzOpen nzTitle="User Data" nzIcon="user">
+            <ul>
+              <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+                <a routerLink="./../users/table">Table User</a>
+              </li>
+              <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+                <a routerLink="./../form">Form Tamu</a>
+              </li>
+              <!-- <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+                <a routerLink="./../forms/create-user">Lupa Password</a>
+              </li> -->
+            </ul>
+          </li>
+        </div>
+      </ul>
+    </ng-container>
+  </nz-drawer>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span
+          class="header-trigger"
+          (click)="isCollapsed = !isCollapsed"
+          style="color: #fff"
+        >
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+        </span>
+
+        <nz-input-group
+          class="search-bar"
+          [nzSuffix]="suffixIconSearch"
+          *ngIf="!isMobileView"
+        >
+          <input type="text" nz-input placeholder="Search" readOnly />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+
+        <div class="item-right">
+          <nz-badge nzDot>
+            <nz-avatar
+              nzIcon="user"
+              [nzShape]="'square'"
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+              nzPlacement="bottomLeft"
+            ></nz-avatar>
+          </nz-badge>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu style="width: 200px">
+              <li nz-menu-item nzDisabled>Hello , {{ userName }}</li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item nzDanger (click)="signOut()">
+                <i nz-icon [nzType]="'logout'" [nzTheme]="'outline'"></i>
+                Logout
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
+    <nz-header>
+      <div class="app-header section-header">
+        <h1>{{ isRoute }}</h1>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

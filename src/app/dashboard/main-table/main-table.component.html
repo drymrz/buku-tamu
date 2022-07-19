@@ -1,0 +1,45 @@
+<nz-card>
+  <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+    <nz-date-picker
+      [nzFormat]="dateFormat"
+      (ngModelChange)="getDatabyDate($event)"
+      [(ngModel)]="selectDate"
+      nzSize="large"
+      style="margin-bottom: 30px; margin-left: 10px"
+    ></nz-date-picker>
+
+    <nz-table
+      #basicTable
+      [nzData]="dataTamu"
+      nzScroll="{ x: 'auto' }"
+      nzSize="middle"
+    >
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal Kunjungan</th>
+          <th>Jumlah Tamu</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.no }}</td>
+          <td>{{ data.id }}</td>
+          <td>{{ data.jumlahData }} Tamu</td>
+          <td>
+            <button
+              nz-button
+              nzType="dashed"
+              nzShape="circle"
+              [routerLink]="['/table', data.id]"
+            >
+              <i nz-icon nzType="file-search"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-spin>
+</nz-card>

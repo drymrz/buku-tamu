@@ -1,0 +1,21 @@
+nz-card {
+  margin: 25px auto 0;
+}
+
+nz-table {
+  counter-reset: rowNumber;
+}
+
+nz-table .no::before {
+  display: table-cell;
+  counter-increment: rowNumber;
+  content: counter(rowNumber) ".";
+  text-align: center;
+  padding-left: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  nz-table .no::before {
+    padding-left: 5px;
+  }
+}

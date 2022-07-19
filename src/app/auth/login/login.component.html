@@ -1,0 +1,80 @@
+<div class="flex-container">
+  <div class="flex-card">
+    <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning" class="login-spin">
+      <nz-card class="login-card">
+        <div class="title-wrap">
+          <img src="../../../assets/img/logo-smk.png" alt="" />
+          <h1>SELAMAT DATANG</h1>
+        </div>
+        <form
+          nz-form
+          [formGroup]="loginForm"
+          class="login-form"
+          (ngSubmit)="userLogin()"
+        >
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+              <nz-input-group nzPrefixIcon="user" nzSize="large">
+                <input
+                  nz-input
+                  formControlName="email"
+                  type="email"
+                  placeholder="Email Address"
+                />
+                <ng-template #emailErrorTpl let-control>
+                  <ng-container *ngIf="control.hasError('email')"
+                    >Email Not Valid !</ng-container
+                  >
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your E-mail!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group
+                nzPrefixIcon="lock"
+                [nzSuffix]="suffixTemplate"
+                nzSize="large"
+              >
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  formControlName="password"
+                  placeholder="Password"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <i
+                  nz-icon
+                  [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                  (click)="passwordVisible = !passwordVisible"
+                ></i>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <button
+            nz-button
+            class="login-form-button login-form-margin"
+            [nzType]="'primary'"
+            [disabled]="!loginForm.valid"
+            nzSize="large"
+          >
+            MASUK
+          </button>
+        </form>
+        <p class="app-name">
+          Aplikasi Buku Tamu SMK Negeri 7 Batam <br /><i
+            nz-icon
+            nzType="copyright"
+            nzTheme="outline"
+          ></i>
+          Adry Mirza - 2022
+        </p>
+      </nz-card>
+    </nz-spin>
+  </div>
+</div>

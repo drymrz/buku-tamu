@@ -1,0 +1,101 @@
+<nz-card nzTitle="Add New User" [nzExtra]="extraTemplate">
+  <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
+    <form
+      nz-form
+      [formGroup]="registerForm"
+      (ngSubmit)="submitForm()"
+      nzLayout="vertical"
+    >
+      <nz-form-item>
+        <nz-form-label nzRequired>E-mail</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+          <input nz-input formControlName="email" nzSize="large" type="email" />
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('email')"
+              >The input is not valid E-mail!</ng-container
+            >
+            <ng-container *ngIf="control.hasError('required')"
+              >Please input your E-mail!</ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Password</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Please input your password!">
+          <input
+            nz-input
+            type="password"
+            nzSize="large"
+            formControlName="password"
+            (ngModelChange)="validateConfirmPassword()"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Confirm Password</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+          <input
+            nz-input
+            type="password"
+            formControlName="confirm"
+            nzSize="large"
+          />
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please confirm your password!</ng-container
+            >
+            <ng-container *ngIf="control.hasError('confirm')"
+              >Password is inconsistent!</ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Nama Lengkap</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          nzValidatingTip="Validating..."
+          [nzErrorTip]="userErrorTpl"
+        >
+          <input nz-input formControlName="fullName" nzSize="large" />
+          <ng-template #userErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please input your Full Name!</ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Jabatan</nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input nz-input formControlName="jabatan" nzSize="large" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Account Level</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="acLevel" nzSize="large">
+            <nz-option nzLabel="User" nzValue="user"></nz-option>
+            <nz-option nzLabel="Operator" nzValue="operator"></nz-option>
+            <nz-option nzLabel="Admin" nzValue="admin"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzOffset]="7">
+          <button nz-button nzType="primary" [disabled]="!registerForm.valid">
+            Submit
+          </button>
+          <button nz-button (click)="resetForm($event)">Reset</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-spin>
+</nz-card>
+
+<ng-template #extraTemplate>
+  <button nz-button [routerLink]="['../table']">
+    <i nz-icon nzType="ordered-list" nzTheme="outline"></i>
+  </button>
+</ng-template>

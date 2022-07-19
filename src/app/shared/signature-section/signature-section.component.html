@@ -1,0 +1,28 @@
+<div class="flex-layout">
+  <h1 class="title">TANDA TANGAN DISINI</h1>
+  <div class="signature-area">
+    <signature-pad
+      *ngIf="!isMobileView"
+      [options]="signaturePadDesktop"
+      (onEndEvent)="drawComplete()"
+    ></signature-pad>
+
+    <signature-pad
+      *ngIf="isMobileView"
+      [options]="signaturePadMobile"
+      (onEndEvent)="drawComplete()"
+    ></signature-pad>
+  </div>
+
+  <nz-button-group nzSize="large" class="btn-group">
+    <button nz-button nzType="text" nzDanger (click)="resetBtn()">RESET</button>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="postBtn()"
+      [disabled]="doneDraw != true"
+    >
+      POST
+    </button>
+  </nz-button-group>
+</div>

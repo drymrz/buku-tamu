@@ -1,0 +1,49 @@
+<nz-card nzTitle="Description" [nzExtra]="extraTemplate">
+  <nz-descriptions nzBordered>
+    <nz-descriptions-item nzTitle="Nama Lengkap" [nzSpan]="3">{{
+      fullName
+    }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Email" [nzSpan]="2">{{
+      uEmail
+    }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Password" [nzSpan]="2">
+      <nz-input-group
+        [nzSuffix]="suffixTemplate"
+        nzSize="large"
+        style="border: 0px"
+      >
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          nz-input
+          readOnly
+          [(ngModel)]="uPass"
+        />
+      </nz-input-group>
+      <ng-template #suffixTemplate>
+        <i
+          nz-icon
+          [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+          (click)="passwordVisible = !passwordVisible"
+        ></i>
+      </ng-template>
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Jabatan" [nzSpan]="3">{{
+      jabatan
+    }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Account Level" [nzSpan]="3">{{
+      role
+    }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Akun Dibuat Pada" [nzSpan]="1">
+      {{ dateCreated }}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Dibuat Oleh">
+      {{ createdBy }}
+    </nz-descriptions-item>
+  </nz-descriptions>
+</nz-card>
+
+<ng-template #extraTemplate>
+  <button nz-button (click)="routerReturn()">
+    <i nz-icon nzType="ordered-list" nzTheme="outline"></i>
+  </button>
+</ng-template>
