@@ -5,7 +5,7 @@ import {
   EventEmitter,
   HostListener,
 } from '@angular/core';
-import { WebcamImage } from 'ngx-webcam';
+import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 
 @Component({
@@ -17,8 +17,10 @@ export class CameraSectionComponent implements OnInit {
   disableBtn = true;
 
   @Output() imageBase64: EventEmitter<any> = new EventEmitter();
+  @Output() prevTab: EventEmitter<any> = new EventEmitter();
 
   public webcamImage: WebcamImage = null;
+  storedImage;
   windowWidth: number;
   isMobileView = false;
 
@@ -27,7 +29,19 @@ export class CameraSectionComponent implements OnInit {
   private trigger: Subject<void> = new Subject<void>();
   triggerSnapshot(): void {
     this.trigger.next();
-    this.disableBtn = true;
+    sessionStorage.setItem(
+      'imageBase64',
+      JSON.stringify(this.webcamImage.imageAsBase64)
+    );
+  }
+
+  public handleInitError(error: WebcamInitError): void {
+    if (
+      error.mediaStreamError &&
+      error.mediaStreamError.name === 'NotAllowedError'
+    ) {
+      alert(' Kamera Tidak Dapat di Akses !');
+    }
   }
 
   handleImage(webcamImage: WebcamImage): void {
@@ -40,21 +54,26 @@ export class CameraSectionComponent implements OnInit {
 
   resetImage() {
     this.webcamImage = null;
-    this.enableBtn();
+    this.storedImage = null;
+    sessionStorage.removeItem('imageBase64');
   }
 
   nextBtn() {
-    this.imageBase64.emit(this.webcamImage.imageAsBase64.toString());
+    if (this.storedImage) {
+      this.imageBase64.emit(this.storedImage);
+    } else {
+      this.imageBase64.emit(this.webcamImage.imageAsBase64);
+    }
   }
 
-  enableBtn() {
-    setTimeout(() => {
-      this.disableBtn = false;
-    }, 2500);
+  backBtn() {
+    this.prevTab.emit();
   }
 
   ngOnInit(): void {
-    this.enableBtn();
+    if (sessionStorage.imageBase64) {
+      this.storedImage = JSON.parse(sessionStorage.imageBase64);
+    }
 
     this.windowWidth = window.innerWidth;
     if (this.windowWidth <= 500) {

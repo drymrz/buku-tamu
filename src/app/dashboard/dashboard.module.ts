@@ -4,21 +4,21 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ImportAllNZModule } from '../nz-declaration.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MainTableComponent } from './main-table/main-table.component';
-import { DetailTamuComponent } from './detail-tamu/detail-tamu.component';
-import { DescTableComponent } from './desc-table/desc-table.component';
-import { UserTableComponent } from './user-table/user-table.component';
+import { MainTableComponent } from './table-kunjungan/main-table.component';
+import { DetailKunjunganComponent } from './detail-kunjungan/detail-kunjungan.component';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { TableUserComponent } from './table-user/user-table.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
 import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
   declarations: [
     MainTableComponent,
-    DetailTamuComponent,
-    DescTableComponent,
-    UserTableComponent,
+    DetailKunjunganComponent,
+    HomeDashboardComponent,
+    TableUserComponent,
     DetailUserComponent,
-    NewUserComponent
+    NewUserComponent,
   ],
   imports: [
     CommonModule,
@@ -28,4 +28,4 @@ import { NewUserComponent } from './new-user/new-user.component';
     ImportAllNZModule,
   ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

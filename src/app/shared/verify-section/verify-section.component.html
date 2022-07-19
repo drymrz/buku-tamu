@@ -1,0 +1,106 @@
+<div nz-row style="height: 100%; align-content: space-between">
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div class="step-header">
+      <p nz-typography nzType="secondary">Step 5/5</p>
+      <h1>Data Sudah Benar ?</h1>
+    </div>
+  </div>
+  <div nz-col nzSpan="22" nzOffset="1">
+    <!-- <div class="flex">
+      <div class="flex-2">
+        <img
+          class="selfieImg"
+          [src]="'data:image/jpeg;base64,' + dataForm.selfieBase64"
+        />
+      </div>
+      <div class="flex-2">
+        <img
+          class="signatureImg"
+          [src]="'data:image/jpeg;base64,' + dataForm.signatureBase64"
+        />
+      </div>
+    </div> -->
+
+    <nz-descriptions nzBordered>
+      <nz-descriptions-item nzTitle="Tanggal" [nzSpan]="2">{{
+        date
+      }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Jam">{{ hour }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Nama Lengkap" [nzSpan]="3">{{
+        dataForm.fullName
+      }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Asal Instansi / Wali" [nzSpan]="2">
+        {{ dataForm.whereFrom }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="No Hp">
+        {{ dataForm.phoneNumber }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Bertemu Dengan" [nzSpan]="2">{{
+        dataForm.meetWith
+      }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Keperluan" [nzSpan]="1">{{
+        dataForm.necessity
+      }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Photo" [nzSpan]="2">
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          (click)="selfiePreview()"
+        >
+          Preview
+        </button>
+        <button
+          style="margin-left: 8px"
+          nz-button
+          nzSize="small"
+          nzType="text"
+          (click)="imageTab()"
+          nzDanger
+        >
+          <i nz-icon nzType="reload" nzTheme="outline"></i>
+        </button>
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Tanda Tangan">
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          (click)="signaturePreview()"
+        >
+          Preview
+        </button>
+        <button
+          style="margin-left: 8px"
+          nz-button
+          nzSize="small"
+          nzType="text"
+          (click)="backBtn()"
+          nzDanger
+        >
+          <i nz-icon nzType="reload" nzTheme="outline"></i>
+        </button>
+      </nz-descriptions-item>
+    </nz-descriptions>
+  </div>
+  <nz-divider></nz-divider>
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div nz-row nzJustify="end">
+      <nz-button-group nzSize="large">
+        <div>
+          <button nz-button nzType="text" (click)="backBtn()" class="next-btn">
+            Kembali
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            (click)="submitBtn()"
+            class="next-btn"
+          >
+            Submit
+          </button>
+        </div>
+      </nz-button-group>
+    </div>
+  </div>
+</div>

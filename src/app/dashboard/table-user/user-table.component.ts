@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DataAPIService } from '../../services/data-api.service';
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: 'app-table-user',
+  templateUrl: './table-user.component.html',
+  styleUrls: ['./table-user.component.scss'],
 })
-export class UserTableComponent implements OnInit {
-
+export class TableUserComponent implements OnInit {
   isSpinning;
   dataUser;
   tableNumber = 1;
 
-  constructor(private api: DataAPIService) { }
-
+  constructor(private api: DataAPIService) {}
 
   getAllUserData() {
     this.isSpinning = true;
@@ -24,7 +22,7 @@ export class UserTableComponent implements OnInit {
           fullName: u.payload.doc.data()['fullName'],
           jabatan: u.payload.doc.data()['jabatan'],
           password: u.payload.doc.data()['password'],
-          role: u.payload.doc.data()['role']
+          role: u.payload.doc.data()['role'],
         };
       });
       this.isSpinning = false;
@@ -32,8 +30,7 @@ export class UserTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUserData()
+    this.getAllUserData();
     sessionStorage.setItem('location', 'Table User');
   }
-
 }

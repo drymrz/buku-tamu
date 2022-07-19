@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { ImportAllNZModule } from './nz-declaration.module';
 import { WebcamModule } from 'ngx-webcam';
 import { SignaturePadModule } from 'ngx-signaturepad';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppComponent } from './app.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
@@ -30,6 +31,7 @@ import { FormSectionComponent } from './shared/form-section/form-section.compone
 import { CameraSectionComponent } from './shared/camera-section/camera-section.component';
 import { SignatureSectionComponent } from './shared/signature-section/signature-section.component';
 import { FormResultComponent } from './shared/form-result/form-result.component';
+import { VerifySectionComponent } from './shared/verify-section/verify-section.component';
 
 
 registerLocaleData(en);
@@ -44,6 +46,7 @@ registerLocaleData(en);
     CameraSectionComponent,
     SignatureSectionComponent,
     FormResultComponent,
+    VerifySectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ registerLocaleData(en);
     AngularFirestoreModule,
     ImportAllNZModule,
     WebcamModule,
-    SignaturePadModule
+    SignaturePadModule,
+    NgxCaptchaModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -6,10 +6,7 @@
   <div class="image-section">
     <nz-card nzTitle="Selfie Capture" class="selfie-card">
       <div class="image-area">
-        <img
-          [src]="'data:image/jpeg;base64,' + selfieBase64"
-          class="selfie-img"
-        />
+        <img [src]="selfieBase64" class="selfie-img" />
       </div>
     </nz-card>
   </div>
@@ -22,25 +19,25 @@
             idSharedData
           }}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Tanggal" [nzSpan]="2"
-            >{{ todayDay }} , {{ todayDate }}</nz-descriptions-item
+            >{{ detailData.day }} , {{ detailData.date }}</nz-descriptions-item
           >
           <nz-descriptions-item nzTitle="Jam">{{
-            todayHour
+            detailData.time
           }}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Nama Lengkap" [nzSpan]="3">{{
-            fullName
+            detailData.fullName
           }}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Asal Instansi / Wali" [nzSpan]="2">
-            {{ instansi }}
+            {{ detailData.whereFrom }}
           </nz-descriptions-item>
           <nz-descriptions-item nzTitle="No Hp">
-            {{ phoneNumberPrefix }}{{ phoneNumber }}
+            {{ detailData.phoneNumber }}
           </nz-descriptions-item>
           <nz-descriptions-item nzTitle="Bertemu Dengan" [nzSpan]="3">{{
-            meetWith
+            detailData.meetWith
           }}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Keperluan" [nzSpan]="3">{{
-            keperluan
+            detailData.necessity
           }}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Penerima Tamu" [nzSpan]="3">{{
             penerimaTamu
@@ -50,10 +47,7 @@
     </nz-card>
     <nz-card nzTitle="Signature" class="signature-card">
       <div class="image-area">
-        <img
-          class="signature-img"
-          [src]="'data:image/png;base64,' + signatureBase64"
-        />
+        <img class="signature-img" [src]="signatureBase64" />
       </div>
     </nz-card>
   </div>

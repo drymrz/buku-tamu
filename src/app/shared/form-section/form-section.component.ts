@@ -5,17 +5,16 @@ import {
   EventEmitter,
   ViewEncapsulation,
 } from '@angular/core';
+import { Location } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
 import * as moment from 'moment';
 import 'moment/locale/id';
 moment.locale('id');
-
 
 @Component({
   selector: 'app-form-section',
@@ -24,57 +23,68 @@ moment.locale('id');
   styleUrls: ['./form-section.component.scss'],
 })
 export class FormSectionComponent implements OnInit {
-
   @Output() entryFormDataPass: EventEmitter<any> = new EventEmitter();
 
   entryForm: FormGroup;
   todayDate = Date();
   dateFormat = 'dd-MM-yyyy';
-  dayFormat = 'EEEE';
-  dataCount: string;
-  convertTanggal: string;
 
-  constructor(
-    private afs: AngularFirestore,
-    private fb: FormBuilder,
-  ) {
+  isFirstSlide = true;
+  isVisible = false;
+  isOkLoading = false;
 
-    let formatDate = moment(this.todayDate).format('DD-MM-YYYY').toString();
-    this.afs
-      .collection('dataKunjunganTamu/' + formatDate + '/data/')
-      .get()
-      .subscribe((snap) => {
-        let dbCount = snap.size + 1;
-        this.patchEntryFormValue(dbCount.toString());
-      });
-  }
-
-  patchEntryFormValue(val) {
-    this.dataCount = val;
-    this.entryForm.controls['inputNo'].patchValue(this.dataCount);
-  }
+  constructor(private fb: FormBuilder, private location: Location) {}
 
   nextBtn() {
+    // this.showModal();
     this.entryFormDataPass.emit(this.entryForm.value);
   }
 
-  resetBtn() {
-    this.ngOnInit()
-    this.entryForm.controls['inputNo'].patchValue(this.dataCount);
+  routerBack() {
+    this.location.back();
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
+  nextSlide() {
+    this.isFirstSlide = false;
+  }
+
+  prevBtn() {
+    this.isFirstSlide = true;
   }
 
   ngOnInit(): void {
     this.entryForm = this.fb.group({
-      inputNo: [0, Validators.required],
+      date: [moment(new Date()).format('YYYY-MM-DD h:mm:ss')],
       fullName: ['', [Validators.required]],
-      instansi: ['', [Validators.required]],
+      whereFrom: ['', [Validators.required]],
       phoneNumberPrefix: ['+62'],
-      phoneNumber: ['', [Validators.pattern, Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
-      keperluan: ['', [Validators.required]],
-      namaGuru: ['', Validators.required],
-      tanggalKunjungan: [moment().format('DD-MM-YYYY').toString()],
-      hariKunjungan: [moment().format('dddd').toString()],
-      jamKunjungan: [moment().format('LT').toString()],
+      phoneNumber: [
+        '',
+        [
+          Validators.pattern,
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(15),
+        ],
+      ],
+      necessity: ['', [Validators.required]],
+      meetWith: ['', Validators.required],
     });
   }
 }

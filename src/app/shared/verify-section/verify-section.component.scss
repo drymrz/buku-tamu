@@ -1,0 +1,13 @@
+.step-header {
+  margin-top: 1.2rem;
+}
+
+.ant-divider-horizontal {
+  margin: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .ant-divider-horizontal {
+    margin: 24px 0;
+  }
+}

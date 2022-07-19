@@ -34,43 +34,33 @@
         <i nz-icon nzType="fire"></i>
         <a
           [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }"
-          routerLink="./../dashboard/"
+          routerLink="./../dashboard"
           >Dashboard</a
         >
       </li>
+      <li nz-submenu nzOpen nzTitle="Table Data" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+            <a routerLink="./../kunjungan/table">Kunjungan Tamu</a>
+          </li>
+          <li nz-menu-item nzMatchRouter style="padding-left: 68px">
+            <a routerLink="./../user/table">Pengguna Terdaftar</a>
+          </li>
+        </ul>
+      </li>
 
       <div *ngIf="userRole !== 'user'" class="user-forbidden">
-        <!-- <p
-          class="menu-header"
-          *ngIf="userRole !== 'user'"
-          [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }"
-        >
-          DATA TABLES
-        </p>
-        <li nz-submenu nzOpen nzTitle="Procurement" nzIcon="shopping-cart">
-          <ul>
-            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../dashboard/list-absensi">Permintaan ABP</a>
-            </li>
-            <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../dashboard/list-user">Rincian Anggaran</a>
-            </li>
-          </ul>
-        </li> -->
         <p class="menu-header" [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }">
-          USERS
+          INPUT DATA
         </p>
-        <li nz-submenu nzOpen nzTitle="User Data" nzIcon="user">
+        <li nz-submenu nzOpen nzTitle="Forms" nzIcon="diff">
           <ul>
             <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../users/table">Table User</a>
+              <a routerLink="./../kunjungan/form">Form Tamu</a>
             </li>
             <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../form">Form Tamu</a>
+              <a routerLink="./../user/form">Tambah Pengguna</a>
             </li>
-            <!-- <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../forms/create-user">Lupa Password</a>
-            </li> -->
           </ul>
         </li>
       </div>
@@ -94,30 +84,31 @@
           <i nz-icon nzType="fire"></i>
           <a routerLink="./../dashboard/">Dashboard</a>
         </li>
-        <div *ngIf="userRole !== 'user'" class="user-forbidden">
-          <!-- <p class="menu-header">DATA TABLES</p>
-        <li nz-submenu nzOpen nzTitle="Procurement" nzIcon="shopping-cart">
+        <li nz-submenu nzOpen nzTitle="Table Data" nzIcon="ordered-list">
           <ul>
             <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../dashboard/list-absensi">Permintaan ABP</a>
+              <a routerLink="./../kunjungan/table">Kunjungan Tamu</a>
             </li>
             <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-              <a routerLink="./../dashboard/list-user">Rincian Anggaran</a>
+              <a routerLink="./../user/table">Pengguna Terdaftar</a>
             </li>
           </ul>
-        </li> -->
-          <p class="menu-header">USERS</p>
-          <li nz-submenu nzOpen nzTitle="User Data" nzIcon="user">
+        </li>
+        <div *ngIf="userRole !== 'user'" class="user-forbidden">
+          <p
+            class="menu-header"
+            [ngStyle]="{ opacity: isCollapsed ? '0' : '1' }"
+          >
+            INPUT DATA
+          </p>
+          <li nz-submenu nzOpen nzTitle="Forms" nzIcon="diff">
             <ul>
               <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-                <a routerLink="./../users/table">Table User</a>
+                <a routerLink="./../kunjungan/form">Form Tamu</a>
               </li>
               <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-                <a routerLink="./../form">Form Tamu</a>
+                <a routerLink="./../user/form">Tambah Pengguna</a>
               </li>
-              <!-- <li nz-menu-item nzMatchRouter style="padding-left: 68px">
-                <a routerLink="./../forms/create-user">Lupa Password</a>
-              </li> -->
             </ul>
           </li>
         </div>
@@ -139,7 +130,7 @@
           ></i>
         </span>
 
-        <nz-input-group
+        <!-- <nz-input-group
           class="search-bar"
           [nzSuffix]="suffixIconSearch"
           *ngIf="!isMobileView"
@@ -148,7 +139,7 @@
         </nz-input-group>
         <ng-template #suffixIconSearch>
           <i nz-icon nzType="search"></i>
-        </ng-template>
+        </ng-template> -->
 
         <div class="item-right">
           <nz-badge nzDot>

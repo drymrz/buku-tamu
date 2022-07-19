@@ -1,28 +1,52 @@
-<div class="flex-layout">
-  <h1 class="title">TANDA TANGAN DISINI</h1>
-  <div class="signature-area">
-    <signature-pad
-      *ngIf="!isMobileView"
-      [options]="signaturePadDesktop"
-      (onEndEvent)="drawComplete()"
-    ></signature-pad>
-
-    <signature-pad
-      *ngIf="isMobileView"
-      [options]="signaturePadMobile"
-      (onEndEvent)="drawComplete()"
-    ></signature-pad>
+<div nz-row style="height: 100%; align-content: space-between">
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div class="step-header">
+      <p nz-typography nzType="secondary">Step 4/5</p>
+      <h1>Tanda Tangan</h1>
+    </div>
   </div>
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div class="signature-area">
+      <signature-pad
+        *ngIf="!isMobileView"
+        [options]="signaturePadDesktop"
+        (onEndEvent)="drawComplete()"
+      ></signature-pad>
 
-  <nz-button-group nzSize="large" class="btn-group">
-    <button nz-button nzType="text" nzDanger (click)="resetBtn()">RESET</button>
-    <button
-      nz-button
-      nzType="primary"
-      (click)="postBtn()"
-      [disabled]="doneDraw != true"
-    >
-      POST
-    </button>
-  </nz-button-group>
+      <signature-pad
+        *ngIf="isMobileView"
+        [options]="signaturePadMobile"
+        (onEndEvent)="drawComplete()"
+      ></signature-pad>
+    </div>
+  </div>
+  <nz-divider></nz-divider>
+
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div nz-row nzJustify="end">
+      <nz-button-group nzSize="large">
+        <button
+          nz-button
+          nzType="text"
+          class="next-btn"
+          nzDanger
+          (click)="resetBtn()"
+        >
+          Reset
+        </button>
+        <button nz-button nzType="text" class="next-btn" (click)="backBtn()">
+          Kembali
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          class="next-btn"
+          (click)="nextBtn()"
+          [disabled]="doneDraw != true"
+        >
+          Selanjutnya
+        </button>
+      </nz-button-group>
+    </div>
+  </div>
 </div>

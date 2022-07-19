@@ -3,53 +3,48 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guard/auth.guard';
 import { ChildGuardGuard } from '../guard/child-guard.guard';
 import { DashboardLayoutComponent } from '../layouts/dashboard-layout/dashboard-layout.component';
-import { DescTableComponent } from './desc-table/desc-table.component';
-import { DetailTamuComponent } from './detail-tamu/detail-tamu.component';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { DetailKunjunganComponent } from './detail-kunjungan/detail-kunjungan.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
-import { MainTableComponent } from './main-table/main-table.component';
+import { MainTableComponent } from './table-kunjungan/main-table.component';
 import { NewUserComponent } from './new-user/new-user.component';
-import { UserTableComponent } from './user-table/user-table.component';
+import { TableUserComponent } from './table-user/user-table.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardLayoutComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        redirectTo: 'table',
-        pathMatch: 'full',
+        component: HomeDashboardComponent,
       },
       {
-        path: 'table',
+        path: 'kunjungan/table',
         component: MainTableComponent,
       },
       {
-        path: 'table/:id',
-        component: DescTableComponent,
+        path: 'kunjungan/detail/:id',
+        component: DetailKunjunganComponent,
       },
       {
-        path: 'detailTamu/:date/:id',
-        component: DetailTamuComponent
+        path: 'user/table',
+        component: TableUserComponent,
       },
       {
-        path: 'users/table',
-        component: UserTableComponent
+        path: 'user/detail/:id',
+        component: DetailUserComponent,
       },
       {
-        path: 'detailUser/:id',
-        component: DetailUserComponent
-      },
-      {
-        path: 'users/new',
-        component: NewUserComponent
+        path: 'user/form',
+        component: NewUserComponent,
       },
       {
         path: '**',
-        redirectTo: 'table',
-        pathMatch: 'full'
-      }
+        redirectTo: '/dashboard',
+        pathMatch: 'full',
+      },
     ],
   },
 ];
@@ -58,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

@@ -1,4 +1,4 @@
-<nz-card nzTitle="Table User" [nzExtra]="extraTemplate">
+<nz-card>
   <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
     <nz-table
       #basicTable
@@ -29,7 +29,7 @@
               nz-button
               nzType="dashed"
               nzShape="circle"
-              [routerLink]="['/detailUser', data.id]"
+              [routerLink]="['/user/detail/', data.id]"
             >
               <i nz-icon nzType="eye"></i>
             </button>
@@ -39,9 +39,3 @@
     </nz-table>
   </nz-spin>
 </nz-card>
-
-<ng-template #extraTemplate>
-  <button nz-button [routerLink]="['../new']">
-    <i nz-icon nzType="plus"></i>
-  </button>
-</ng-template>

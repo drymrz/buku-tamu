@@ -14,8 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [AuthGuard],
-    canActivateChild: [ChildGuardGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import('src/app/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
@@ -32,7 +31,7 @@ const routes: Routes = [
       import('src/app/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'form',
+    path: 'kunjungan/form',
     component: FormLayoutComponent,
     // canActivate: [FormGuard],
   },

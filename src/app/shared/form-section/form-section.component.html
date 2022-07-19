@@ -1,122 +1,180 @@
-<form nz-form [formGroup]="entryForm" nzLayout="vertical">
-  <nz-form-item class="input-number input-hidden">
-    <nz-form-label>No</nz-form-label>
-    <nz-form-control>
-      <input
-        style="color: #000"
-        nz-input
-        [(ngModel)]="dataCount"
-        [ngModelOptions]="{ standalone: true }"
-        nzSize="large"
-        class="ant-input-disabled"
-        readOnly
-        type="number"
-      />
-    </nz-form-control>
-  </nz-form-item>
-
-  <div class="flex">
-    <nz-form-item class="input-number">
-      <nz-form-label>Date </nz-form-label>
-      <nz-form-control>
-        <nz-date-picker
-          [nzFormat]="dateFormat"
-          [(ngModel)]="todayDate"
-          [ngModelOptions]="{ standalone: true }"
-          nzSize="large"
-          disabled
-        ></nz-date-picker>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item class="input-number">
-      <nz-form-label>Day </nz-form-label>
-      <nz-form-control>
-        <nz-date-picker
-          [nzFormat]="dayFormat"
-          [(ngModel)]="todayDate"
-          [ngModelOptions]="{ standalone: true }"
-          nzSize="large"
-          disabled
-        ></nz-date-picker>
-      </nz-form-control>
-    </nz-form-item>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="isOkLoading"
+  [nzClosable]="false"
+>
+  <div *nzModalContent>
+    <img src="../../../assets/img/camera.png" alt="" />
   </div>
+</nz-modal>
 
-  <nz-divider></nz-divider>
-
-  <div class="flex">
-    <nz-form-item>
-      <nz-form-label>Nama Lengkap</nz-form-label>
-      <nz-form-control>
-        <input nz-input formControlName="fullName" nzSize="large" />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label>Nomor HP</nz-form-label>
-      <nz-form-control>
-        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-          <ng-template #addOnBeforeTemplate>
-            <nz-select
-              formControlName="phoneNumberPrefix"
-              class="large-select"
-              nzSize="large"
-            >
-              <nz-option nzLabel="+62" nzValue="+62"></nz-option>
-            </nz-select>
-          </ng-template>
-          <input
-            nz-input
-            formControlName="phoneNumber"
-            style="height: 40px"
-            pattern="[0-9.]+"
-          />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-
-  <nz-form-item>
-    <nz-form-label>Asal Instansi / Wali Murid dari</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="instansi" nzSize="large" />
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-divider></nz-divider>
-
-  <div class="last-flex">
-    <div class="item-group">
-      <nz-form-item>
-        <nz-form-label>Akan Bertemu Dengan</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="namaGuru" nzSize="large" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label>Keperluan</nz-form-label>
-        <nz-form-control>
-          <textarea
-            nz-input
-            formControlName="keperluan"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-          ></textarea>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <nz-button-group nzSize="large">
-      <button nz-button nzType="text" nzDanger (click)="resetBtn()">
-        RESET
-      </button>
-      <button
-        nz-button
-        nzType="primary"
-        [disabled]="!entryForm.valid"
-        (click)="nextBtn()"
+<div nz-row style="height: 100%; align-content: space-between">
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div class="step-header">
+      <div
+        [ngStyle]="isFirstSlide ? { display: 'block' } : { display: 'none' }"
       >
-        NEXT
-      </button>
-    </nz-button-group>
+        <p nz-typography nzType="secondary">Step 1/5</p>
+        <h1>Data Diri</h1>
+      </div>
+
+      <div
+        [ngStyle]="!isFirstSlide ? { display: 'block' } : { display: 'none' }"
+      >
+        <p nz-typography nzType="secondary">Step 2/5</p>
+        <h1>Keperluan</h1>
+      </div>
+    </div>
   </div>
-</form>
+  <div nz-col nzSpan="22" nzOffset="1">
+    <form nz-form [formGroup]="entryForm" nzLayout="vertical">
+      <div
+        nz-row
+        [ngStyle]="isFirstSlide ? { display: 'block' } : { display: 'none' }"
+      >
+        <div nz-row [nzGutter]="16">
+          <div nz-col nzMd="12" nzXs="24" nzSm="24">
+            <nz-form-item class="input-number">
+              <nz-form-label>Tanggal</nz-form-label>
+              <nz-form-control>
+                <nz-date-picker
+                  [nzFormat]="dateFormat"
+                  [(ngModel)]="todayDate"
+                  [ngModelOptions]="{ standalone: true }"
+                  nzSize="large"
+                  disabled
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Nama Lengkap</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  formControlName="fullName"
+                  nzSize="large"
+                  autofocus
+                  tabindex="1"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzMd="12" nzXs="24" nzSm="24">
+            <nz-form-item>
+              <nz-form-label>Nomor HP</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                  <ng-template #addOnBeforeTemplate>
+                    <nz-select
+                      formControlName="phoneNumberPrefix"
+                      class="large-select"
+                      nzSize="large"
+                    >
+                      <nz-option nzLabel="+62" nzValue="+62"></nz-option>
+                    </nz-select>
+                  </ng-template>
+                  <input
+                    nz-input
+                    formControlName="phoneNumber"
+                    style="height: 48px"
+                    pattern="[0-9.]+"
+                    tabindex="2"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Asal Instansi / Wali Murid dari</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  formControlName="whereFrom"
+                  nzSize="large"
+                  tabindex="3"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </div>
+
+      <div
+        nz-row
+        [ngStyle]="!isFirstSlide ? { display: 'block' } : { display: 'none' }"
+      >
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label>Akan Bertemu Dengan</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="meetWith" nzSize="large" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label>Keperluan</nz-form-label>
+              <nz-form-control>
+                <textarea
+                  nz-input
+                  formControlName="necessity"
+                  [nzAutosize]="{ minRows: 4, maxRows: 6 }"
+                ></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <nz-divider
+    *ngIf="!isFirstSlide && !entryForm.valid"
+    nzText="Lengkapi form untuk melanjutkan"
+    nzOrientation="right"
+  ></nz-divider>
+  <nz-divider *ngIf="isFirstSlide || entryForm.valid"></nz-divider>
+  <div nz-col nzSpan="22" nzOffset="1">
+    <div nz-row nzJustify="end">
+      <nz-button-group nzSize="large">
+        <div
+          [ngStyle]="isFirstSlide ? { display: 'block' } : { display: 'none' }"
+        >
+          <button
+            nz-button
+            nzType="text"
+            class="next-btn"
+            (click)="routerBack()"
+          >
+            Kembali
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            class="next-btn"
+            (click)="nextSlide()"
+          >
+            Selanjutnya
+          </button>
+        </div>
+        <div
+          [ngStyle]="!isFirstSlide ? { display: 'block' } : { display: 'none' }"
+        >
+          <button nz-button nzType="text" class="next-btn" (click)="prevBtn()">
+            Kembali
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            class="next-btn"
+            [disabled]="!entryForm.valid"
+            (click)="nextBtn()"
+          >
+            Selanjutnya
+          </button>
+        </div>
+      </nz-button-group>
+    </div>
+  </div>
+</div>
